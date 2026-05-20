@@ -4,6 +4,7 @@
 
 static float lane_speeds[NUM_LANES] = { 1.5f, 2.0f, 1.2f, 1.8f };
 static int   lane_dirs[NUM_LANES]   = { 1, -1,1, -1};
+int last_milestone = 0;
 
 
 
@@ -12,12 +13,18 @@ void show_start_screen(void) {
 
     // titulo em ASCII art
     attron(COLOR_PAIR(1));
-    mvprintw(1, 5, "  __  __                    ____                         ____                  _ ");
+mvprintw(1,5," _      _____ ____  _        ____  ____  ____  ____"); 
+mvprintw(2,5,"/ \\__/|/  __//  _ \\/ \\  /|  /  __\\/  _ \\/  _ \\/  _ \\");
+mvprintw(3,5,"| |\\/|||  \\  | / \\|| |  ||  |  \\/|| / \\|| / \\|| | \\|");
+mvprintw(4,5,"| |  |||  /_ | \\_/|| |/\\||  |    /| \\_/|| |-||| |_/|");
+mvprintw(5,5,"\\_/  \\|\\____\\\\____/\\_/  \\|  \\_/\\_\\\\____/\\_/ \\|\\____/");
+    /*mvprintw(1, 5, "  __  __                    ____                         ____                  _ ");
     mvprintw(2, 5, " |  \\/  | ___  _____      _/ ___|_ __ ___  ___ ___ _   _|  _ \\ ___   __ _  __| |");
     mvprintw(3, 5, " | |\\/| |/ _ \\/ _ \\ \\ /\\ / / |   | '__/ _ \\/ __/ __| | | | |_) / _ \\ / _` |/ _` |");
     mvprintw(4, 5, " | |  | |  __/ (_) \\ V  V /| |___| | | (_) \\__ \\__ \\ |_| |  _ < (_) | (_| | (_| |");
     mvprintw(5, 5, " |_|  |_|\\___|\\___/ \\_/\\_/  \\____|_|  \\___/|___/___/\\__, |_| \\_\\___/ \\__,_|\\__,_|");
     mvprintw(6, 5, "                                                      |___/                        ");
+    */
     mvprintw(8,  15, "=^.^=  =^.^=  =^.^=  =^.^=  =^.^=  =^.^=");
     
 
@@ -178,6 +185,7 @@ clear();
 
 attron(COLOR_PAIR(1));
 mvprintw(0, 0, "SCORE: %d  VIDAS: %d", gs->cat.score, gs->cat.lives); // função mvprintw para exibir a pontuação e vidas do gato no topo da tela
+attroff(COLOR_PAIR(1));
 
 attron(COLOR_PAIR(4));
 mvprintw(1, 0, "><>  ><>  ><>  ><>  ><>  ><>  ><> ><> ><> ><> ><> ><> ><> ><> "); // desenhar a linha de chegada
@@ -228,7 +236,7 @@ void show_milestone_screen(int score) {
     attron(COLOR_PAIR(1));
     mvprintw(3,  15, "=^.^= =^.^= =^.^= =^.^= =^.^=");
     mvprintw(5,  15, "    /\\_____/\\  ");
-    mvprintw(6,  15, "   /  o   o  \\ ");
+    mvprintw(6,  15, "   /  *   *  \\ ");
     mvprintw(7,  15, "  ( ==  ^  == )");
     mvprintw(8,  15, "   )         ( ");
     mvprintw(9,  15, "  (           )");
@@ -238,7 +246,8 @@ void show_milestone_screen(int score) {
     mvprintw(14, 15, "Pontuacao: %d", score);
     mvprintw(16, 15, "Pressiona qualquer tecla para continuar...");
     attroff(COLOR_PAIR(1));
-    flushinp(); // limpar o buffer de entrada para evitar que a próxima tecla seja lida imediatamente
+
+   
     refresh();
     nodelay(stdscr, FALSE);
     getch();

@@ -20,3 +20,6 @@ Fui construindo função a função devagar, percebendo o que cada uma precisa a
 Implementar a função `draw` com ncurses e os treats aleatórios.
 
 **Linhas de código escritas (estimativa):** ~150
+
+## Sessao 2- 20/05/2026 11:19
+

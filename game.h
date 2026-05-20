@@ -7,10 +7,10 @@
 
 
 #define COLS 60 // define a constante COLS como 60 -> o número de colunas do terminal
-#define ROWS 20 // define a constante ROWS como 20 -> o número de linhas do terminal
-#define NUM_LANES 3 // define a constante NUM_LANES como 3 -> numero de lanes 
+#define ROWS 40 // define a constante ROWS como 40 -> o número de linhas do terminal
+#define NUM_LANES 4 // define a constante NUM_LANES como 4 -> numero de lanes 
 #define CARS_PER_LANE 2 // define a constante CARS_PER_LANE como 2 -> número de carros por lane
-#define CAT_LIVES 3 // define a constante CAT_LIVES como 3 -> número de vidas do gato
+#define CAT_LIVES 9 // define a constante CAT_LIVES como 9 -> número de vidas do gato
 #define SCORE_PER_GOAL 10 // -> pontos ganhos por alcançar o objetivo
 #define FRAME_MS 100 // define a constante FRAME_MS como 100 -> tempo em milissegundos para cada frame do jogo
 
@@ -35,11 +35,20 @@ typedef struct {
     int frame;
 } GameState;
 
+// promessas de funções para o jogo
+
 void init_game(GameState *gs);
 void handle_input(GameState *gs, int key);
 void update_cars(GameState *gs);
 int  check_collision(GameState *gs);
 void check_goal(GameState *gs);
 void draw(GameState *gs);
+void init_cars_recursive(Car cars[][CARS_PER_LANE], int lane);
+void draw_lane_recursive(GameState *gs, int lane);
+void show_start_screen(void);
+void show_gameover_screen(int score);
+void cat_die(GameState *gs);
+void show_milestone_screen(int score);
+
 
 #endif // fim do bloco de inclusão condicional
